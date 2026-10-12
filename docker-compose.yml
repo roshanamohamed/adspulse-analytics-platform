@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      DB_PATH: /data/adspulse.db
+      CORS_ORIGINS: http://localhost:8080,http://localhost:5173
+    volumes:
+      - adspulse-data:/data
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+volumes:
+  adspulse-data:
